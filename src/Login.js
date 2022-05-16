@@ -144,11 +144,11 @@ export default class Login extends React.Component {
                 setDetails
               );
               console.log("Download Document written with ID: ", addRef.id);
-              console.log(this.state.app);
+              alert(this.state.app);
             } else {
               const updateRef = doc(firedb, "users", docId);
               await updateDoc(updateRef, setDetails)
-                .then(() => console.log(this.state.app))
+                .then(() => alert(this.state.app))
                 .catch((r) => console.log(r));
             }
 
