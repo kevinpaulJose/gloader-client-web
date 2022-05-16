@@ -3,7 +3,6 @@ import * as axios from "axios";
 import { firedb } from "./firebase";
 import {
   doc,
-  getDoc,
   collection,
   query,
   where,
