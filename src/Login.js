@@ -66,7 +66,7 @@ export default class Login extends React.Component {
       include_granted_scopes: "true",
       state: "pass-through value",
       access_type: "offline",
-      login_hint: email,
+      login_hint: email == null ? "" : email,
     };
 
     for (var p in params) {
