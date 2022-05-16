@@ -19,6 +19,7 @@ export default class Login extends React.Component {
       code: "",
       loading: true,
       refreshToken: "",
+      //   redirectUri: "http://localhost:3001",
       redirectUri: "https://melodious-crepe-791dff.netlify.app",
       clientId:
         "346457672075-fqi4l8mhiiibss1cqsttlkh8gfdvqpcl.apps.googleusercontent.com",
@@ -56,7 +57,7 @@ export default class Login extends React.Component {
     var params = {
       client_id:
         "346457672075-fqi4l8mhiiibss1cqsttlkh8gfdvqpcl.apps.googleusercontent.com",
-      redirect_uri: "https://melodious-crepe-791dff.netlify.app",
+      redirect_uri: this.state.redirectUri,
       response_type: "code",
       scope: "https://www.googleapis.com/auth/drive email profile",
       include_granted_scopes: "true",
@@ -112,14 +113,7 @@ export default class Login extends React.Component {
             const email = userDetails.email;
             const image = userDetails.picture;
             const id = userDetails.sub;
-            const setDetails = {
-              gmail: email,
-              name: name,
-              image: image,
-              id: id,
-              refreshToken: refresh_token,
-              access: true,
-            };
+
             const docRef = collection(firedb, "users");
             const q = query(docRef, where("gmail", "==", email));
             const querySnapshot = await getDocs(q);
@@ -130,6 +124,17 @@ export default class Login extends React.Component {
               docId = doc.id;
             });
             console.log(userData);
+            const setDetails = {
+              gmail: email,
+              name: name,
+              image: image,
+              id: id,
+              refreshToken:
+                refresh_token === undefined
+                  ? userData[0].refreshToken
+                  : refresh_token,
+              access: true,
+            };
             if (userData.length === 0) {
               const addRef = await addDoc(
                 collection(firedb, "users"),
@@ -179,11 +184,6 @@ export default class Login extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        loading
-        <button onClick={() => this.revokeToken()}>Revoke</button>
-      </div>
-    );
+    return <div>loading</div>;
   }
 }
