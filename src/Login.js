@@ -25,6 +25,7 @@ export default class Login extends React.Component {
         "346457672075-fqi4l8mhiiibss1cqsttlkh8gfdvqpcl.apps.googleusercontent.com",
       clientSecret: "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",
       run: false,
+      app: "",
     };
     // this.getUserDetails = this.getUserDetails.bind(this);
     this.getTokens = this.getTokens.bind(this);
@@ -35,10 +36,12 @@ export default class Login extends React.Component {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var c = url.searchParams.get("code");
+    var app = url.searchParams.get("app");
     if (c != null) {
       this.setState({ code: c });
       this.getRefresh(c);
     } else {
+      this.setState({ app: app });
       this.oauthSignIn();
     }
     console.log(c);
@@ -141,10 +144,11 @@ export default class Login extends React.Component {
                 setDetails
               );
               console.log("Download Document written with ID: ", addRef.id);
+              console.log(this.state.app);
             } else {
               const updateRef = doc(firedb, "users", docId);
               await updateDoc(updateRef, setDetails)
-                .then(() => console.log("success"))
+                .then(() => console.log(this.state.app))
                 .catch((r) => console.log(r));
             }
 
