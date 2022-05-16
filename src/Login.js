@@ -19,7 +19,7 @@ export default class Login extends React.Component {
       code: "",
       loading: true,
       refreshToken: "",
-      redirectUri: "http://localhost:3001",
+      redirectUri: "https://melodious-crepe-791dff.netlify.app",
       clientId:
         "346457672075-fqi4l8mhiiibss1cqsttlkh8gfdvqpcl.apps.googleusercontent.com",
       clientSecret: "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",
@@ -56,7 +56,7 @@ export default class Login extends React.Component {
     var params = {
       client_id:
         "346457672075-fqi4l8mhiiibss1cqsttlkh8gfdvqpcl.apps.googleusercontent.com",
-      redirect_uri: "http://localhost:3001",
+      redirect_uri: "https://melodious-crepe-791dff.netlify.app",
       response_type: "code",
       scope: "https://www.googleapis.com/auth/drive email profile",
       include_granted_scopes: "true",
