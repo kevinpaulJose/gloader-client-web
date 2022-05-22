@@ -20,7 +20,7 @@ export default class Login extends React.Component {
       loading: true,
       refreshToken: "",
       //   redirectUri: "http://localhost:3001",
-      redirectUri: "https://melodious-crepe-791dff.netlify.app",
+      redirectUri: "https://gloader.netlify.app",
       clientId:
         "346457672075-fqi4l8mhiiibss1cqsttlkh8gfdvqpcl.apps.googleusercontent.com",
       clientSecret: "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",
