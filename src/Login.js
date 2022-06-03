@@ -165,6 +165,9 @@ export default class Login extends React.Component {
                     loading: false,
                     animData: doneAnimationData,
                   });
+                  setTimeout(() => {
+                    window.location.assign("gloader://");
+                  }, 1000);
                   // alert("You can now close this window / return to App");
                 })
                 .catch((r) => console.log(r));
@@ -217,13 +220,18 @@ export default class Login extends React.Component {
           speed={0.2}
         />
         {!this.state.loading && (
-          <Button
-            variant="dark"
-            className="mt-3"
-            onClick={() => window.location.assign("gloader://")}
-          >
-            Return to app
-          </Button>
+          <>
+            <span style={{ fontSize: 12 }} className={"mt-5"}>
+              click &#8595; if not redirected in 5 seconds{" "}
+            </span>
+            <Button
+              variant="dark"
+              className="mt-2"
+              onClick={() => window.location.assign("gloader://")}
+            >
+              Return to app
+            </Button>
+          </>
         )}
         {this.state.loading && (
           <Button
