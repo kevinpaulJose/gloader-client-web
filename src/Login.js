@@ -217,7 +217,7 @@ export default class Login extends React.Component {
           </Button>
         )}
         {this.state.loading && (
-          <Button variant="light" className="mt-3">
+          <Button variant="light" className="mt-5">
             reload
           </Button>
         )}
