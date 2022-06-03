@@ -32,7 +32,7 @@ export default class Login extends React.Component {
     this.getRefresh = this.getRefresh.bind(this);
   }
 
-  getTokens() {
+  getTokens = () => {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var c = url.searchParams.get("code");
@@ -46,9 +46,9 @@ export default class Login extends React.Component {
     }
     console.log(c);
     // getRefresh(c);
-  }
+  };
 
-  oauthSignIn() {
+  oauthSignIn = () => {
     var oauth2Endpoint = "https://accounts.google.com/o/oauth2/v2/auth";
     var url_string = window.location.href;
     var url = new URL(url_string);
@@ -79,7 +79,7 @@ export default class Login extends React.Component {
 
     document.body.appendChild(form);
     form.submit();
-  }
+  };
   getRefresh = (code) => {
     console.log("getting refresh token");
     var oAuthTokenEndPoint = "https://oauth2.googleapis.com/token";
@@ -144,6 +144,7 @@ export default class Login extends React.Component {
                 setDetails
               );
               console.log("Download Document written with ID: ", addRef.id);
+              this.setState({ loading: false });
               alert("You can now close this window / return to App");
             } else {
               const updateRef = doc(firedb, "users", docId);
@@ -163,7 +164,7 @@ export default class Login extends React.Component {
     // }
   };
 
-  revokeToken() {
+  revokeToken = () => {
     var options = {
       method: "POST",
       url: "https://oauth2.googleapis.com/revoke",
@@ -183,13 +184,13 @@ export default class Login extends React.Component {
       .catch(function (error) {
         console.error(error);
       });
-  }
+  };
 
   componentDidMount() {
     this.getTokens();
   }
 
   render() {
-    return <div>loading</div>;
+    return <div>{this.state.loading ? "Loading" : "Done"}</div>;
   }
 }
