@@ -12,6 +12,8 @@ import {
 } from "firebase/firestore";
 import Lottie from "react-lottie-player";
 import animationData from "./assets/connection.json";
+import doneAnimationData from "./assets/done.json";
+import { Container } from "react-bootstrap";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -28,6 +30,7 @@ export default class Login extends React.Component {
       clientSecret: "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",
       run: false,
       app: "",
+      animData: animationData,
     };
     // this.getUserDetails = this.getUserDetails.bind(this);
     this.getTokens = this.getTokens.bind(this);
@@ -146,14 +149,17 @@ export default class Login extends React.Component {
                 setDetails
               );
               console.log("Download Document written with ID: ", addRef.id);
-              this.setState({ loading: false });
-              alert("You can now close this window / return to App");
+              this.setState({ loading: false, animData: doneAnimationData });
+              // alert("You can now close this window / return to App");
             } else {
               const updateRef = doc(firedb, "users", docId);
               await updateDoc(updateRef, setDetails)
                 .then(() => {
-                  this.setState({ loading: false });
-                  alert("You can now close this window / return to App");
+                  this.setState({
+                    loading: false,
+                    animData: doneAnimationData,
+                  });
+                  // alert("You can now close this window / return to App");
                 })
                 .catch((r) => console.log(r));
             }
@@ -195,21 +201,16 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <Lottie
-            loop
-            animationData={animationData}
-            play
-            style={{ width: 400, height: 400 }}
-            segments={[
-              this.state.loading ? 40 : 0,
-              this.state.loading ? 70 : 30,
-            ]}
-            speed={0.3}
-          />
-        </div>
-      </div>
+      <Container fluid>
+        <Lottie
+          loop
+          animationData={this.state.animData}
+          play
+          style={{ width: 400, height: 400 }}
+          segments={[this.state.loading ? 40 : 0, this.state.loading ? 70 : 30]}
+          speed={0.3}
+        />
+      </Container>
     );
   }
 }
