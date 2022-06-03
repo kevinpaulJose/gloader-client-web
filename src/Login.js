@@ -149,9 +149,10 @@ export default class Login extends React.Component {
             } else {
               const updateRef = doc(firedb, "users", docId);
               await updateDoc(updateRef, setDetails)
-                .then(() =>
-                  alert("You can now close this window / return to App")
-                )
+                .then(() => {
+                  this.setState({ loading: false });
+                  alert("You can now close this window / return to App");
+                })
                 .catch((r) => console.log(r));
             }
 
