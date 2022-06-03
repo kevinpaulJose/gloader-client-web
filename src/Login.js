@@ -32,6 +32,7 @@ export default class Login extends React.Component {
       run: false,
       app: "",
       animData: animationData,
+      urlStr: "",
     };
     // this.getUserDetails = this.getUserDetails.bind(this);
     this.getTokens = this.getTokens.bind(this);
@@ -40,6 +41,7 @@ export default class Login extends React.Component {
 
   getTokens = () => {
     var url_string = window.location.href;
+    this.setState({ urlStr: url_string });
     var url = new URL(url_string);
     var c = url.searchParams.get("code");
     var app = url.searchParams.get("app");
@@ -151,6 +153,9 @@ export default class Login extends React.Component {
               );
               console.log("Download Document written with ID: ", addRef.id);
               this.setState({ loading: false, animData: doneAnimationData });
+              setTimeout(() => {
+                window.location.assign("gloader://");
+              }, 1000);
               // alert("You can now close this window / return to App");
             } else {
               const updateRef = doc(firedb, "users", docId);
@@ -212,12 +217,20 @@ export default class Login extends React.Component {
           speed={0.2}
         />
         {!this.state.loading && (
-          <Button variant="dark" className="mt-3">
+          <Button
+            variant="dark"
+            className="mt-3"
+            onClick={() => window.location.assign("gloader://")}
+          >
             Return to app
           </Button>
         )}
         {this.state.loading && (
-          <Button variant="light" className="mt-5">
+          <Button
+            onClick={() => (window.location.assign = this.state.urlStr)}
+            variant="light"
+            className="mt-5"
+          >
             reload
           </Button>
         )}
