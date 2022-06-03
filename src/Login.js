@@ -13,7 +13,7 @@ import {
 import Lottie from "react-lottie-player";
 import animationData from "./assets/connection.json";
 import doneAnimationData from "./assets/done.json";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -201,15 +201,16 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container fluid className="mt-4">
         <Lottie
           loop
-          animationData={this.state.animData}
+          animationData={animationData}
           play
           // style={{ width: 400, height: 400 }}
           segments={[this.state.loading ? 40 : 0, this.state.loading ? 70 : 30]}
           speed={0.3}
         />
+        <Button variant="dark">Return to app</Button>
       </Container>
     );
   }
