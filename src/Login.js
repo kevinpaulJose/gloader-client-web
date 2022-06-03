@@ -206,7 +206,7 @@ export default class Login extends React.Component {
           loop
           animationData={this.state.animData}
           play
-          style={{ width: 400, height: 400 }}
+          // style={{ width: 400, height: 400 }}
           segments={[this.state.loading ? 40 : 0, this.state.loading ? 70 : 30]}
           speed={0.3}
         />
