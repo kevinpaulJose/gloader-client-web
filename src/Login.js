@@ -10,6 +10,8 @@ import {
   addDoc,
   updateDoc,
 } from "firebase/firestore";
+import Lottie from "react-lottie-player";
+import animationData from "./assets/connection.json";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -192,6 +194,22 @@ export default class Login extends React.Component {
   }
 
   render() {
-    return <div>{this.state.loading ? "Loading" : "Done"}</div>;
+    return (
+      <div>
+        <div>
+          <Lottie
+            loop
+            animationData={animationData}
+            play
+            style={{ width: 400, height: 400 }}
+            segments={[
+              this.state.loading ? 40 : 0,
+              this.state.loading ? 70 : 30,
+            ]}
+            speed={0.3}
+          />
+        </div>
+      </div>
+    );
   }
 }
