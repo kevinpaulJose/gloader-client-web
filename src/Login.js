@@ -100,7 +100,7 @@ export default class Login extends React.Component {
       url: endURL,
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     })
-      .then(function (response) {
+      .then((response) => {
         let access_token = response.data.access_token;
         let refresh_token = response.data.refresh_token;
         console.log(response.data.refresh_token);
@@ -110,7 +110,7 @@ export default class Login extends React.Component {
             "https://www.googleapis.com/oauth2/v3/userinfo?access_token=" +
               access_token
           )
-          .then(async function (response) {
+          .then(async (response) => {
             const userDetails = response.data;
             const name = userDetails.name;
             const email = userDetails.email;
