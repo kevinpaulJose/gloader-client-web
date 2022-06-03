@@ -14,6 +14,7 @@ import Lottie from "react-lottie-player";
 import animationData from "./assets/connection.json";
 import doneAnimationData from "./assets/done.json";
 import { Button, Container } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -208,9 +209,18 @@ export default class Login extends React.Component {
           play
           // style={{ width: 400, height: 400 }}
           segments={[this.state.loading ? 40 : 0, this.state.loading ? 70 : 30]}
-          speed={0.3}
+          speed={0.2}
         />
-        <Button variant="dark">Return to app</Button>
+        {!this.state.loading && (
+          <Button variant="dark" className="mt-3">
+            Return to app
+          </Button>
+        )}
+        {this.state.loading && (
+          <Button variant="light" className="mt-3">
+            reload
+          </Button>
+        )}
       </Container>
     );
   }
