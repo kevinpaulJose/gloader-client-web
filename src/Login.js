@@ -221,9 +221,12 @@ export default class Login extends React.Component {
         />
         {!this.state.loading && (
           <>
-            <span style={{ fontSize: 12 }} className={"mt-5"}>
-              click &#8595; if not redirected in 5 seconds{" "}
-            </span>
+            <div>
+              <span style={{ fontSize: 14 }} className={"mt-5"}>
+                click &#8595; if not redirected in 5 seconds{" "}
+              </span>
+            </div>
+
             <Button
               variant="dark"
               className="mt-2"
