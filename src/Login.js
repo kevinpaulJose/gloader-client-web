@@ -145,6 +145,8 @@ export default class Login extends React.Component {
                   ? userData[0].refreshToken
                   : refresh_token,
               access: true,
+              used: 0,
+              type: "normal",
             };
             if (userData.length === 0) {
               const addRef = await addDoc(
