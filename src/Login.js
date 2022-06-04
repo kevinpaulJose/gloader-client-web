@@ -145,10 +145,10 @@ export default class Login extends React.Component {
                   ? userData[0].refreshToken
                   : refresh_token,
               access: true,
-              used: 0,
-              type: "normal",
             };
             if (userData.length === 0) {
+              setDetails.used = 0;
+              setDetails.type = "normal";
               const addRef = await addDoc(
                 collection(firedb, "users"),
                 setDetails
